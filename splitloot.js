@@ -33,10 +33,7 @@ function setPercentInputConstraint() {
 function evaluateExpression(element) {
     var expression = $(element).val();
     var value = math.eval(expression);
-    console.debug(expression);
-    console.debug(value);
     $(element).val(value);
-    
 }
 
 function setSplitter(element) {
@@ -71,8 +68,8 @@ function calculateSplit() {
         })
         .filter(function () { return !!this.name; })
         .toArray();
-    var total = +splitTotal.val();
-    var repair = +splitRepair.val();
+    var total = math.eval(splitTotal.val());
+    var repair = math.eval(splitRepair.val());
     var percent = +splitPercent.val() / 100;
     var totalContribution = members.reduce(function (totalContribution, member) { return totalContribution + member.contribution; }, 0);
 
