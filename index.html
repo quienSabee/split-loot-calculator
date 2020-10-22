@@ -23,14 +23,14 @@
                         <div class="table-responsive-sm">
                             <table class="table table-bordered table-striped">
                                 <thead>
-                                    <th><strong>Name</strong></th>
-                                    <th><strong>Contribution</strong></th>
-                                    <th><button class="btn btn-primary" type="submit" onclick="addMember()">Add</button>
+                                    <th class="align-middle"><strong>Name</strong></th>
+                                    <th class="align-middle"><strong>Contribution</strong></th>
+                                    <th class="align-middle"><button class="btn btn-primary" type="submit" onclick="addMember()">Add</button>
                                     </th>
                                 </thead>
                                 <tbody id="member-list">
                                     <tr style="display:none;">
-                                        <td>
+                                        <td class="align-middle">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text person-icon" onclick="setSplitter(this)">
                                                     <svg width="1em" height="1em" viewBox="0 0 16 16"
@@ -44,15 +44,15 @@
                                                 <input type="hidden" class="member-is-splitter">
                                             </div>
                                         </td>
-                                        <td>
-                                            <div class="input-group mb-3">
+                                        <td class="align-middle">
+                                            <div class="input-group">
                                                 <input type="number" class="percent form-control member-contribution"
                                                     value="100" min="0" max="100">
                                                 <div class="input-group-append"><span class="input-group-text">%</span>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
+                                        <td class="align-middle">
                                             <button class="btn btn-danger" type="submit"
                                                 onclick="removeMember(this)">Remove</button>
                                         </td>
@@ -61,19 +61,19 @@
                             </table>
                         </div>
                         <div class="row">
-                            <div class="input-group mb-3 col-md-4 col-sm-12">
+                            <div class="input-group col-md-4 col-sm-12">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Total</span>
                                 </div>
                                 <input type="text" class="form-control" aria-label="Total" id="split-total" min="0" value="0" onblur="evaluateExpression(this)">
                             </div>
-                            <div class="input-group mb-3 col-md-4 col-sm-12">
+                            <div class="input-group col-md-4 col-sm-12">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Repair</span>
                                 </div>
                                 <input type="text" class="form-control" aria-label="Repair" id="split-repair" min="0" value="0" onblur="evaluateExpression(this)">
                             </div>
-                            <div class="input-group mb-3 col-md-4 col-sm-12">
+                            <div class="input-group col-md-4 col-sm-12">
                                 <input type="number" class="percent form-control" id="split-percent" value="10" min="0"
                                     max="100">
                                 <div class="input-group-append"><span class="input-group-text">%</span>

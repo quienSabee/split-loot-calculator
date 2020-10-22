@@ -94,15 +94,19 @@ function calculateSplit() {
     displayRecap(recap);
 }
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;");
+}
+
 function displayRecap(recap) {
     splitRecap.empty();
-    splitRecap.append(`<span><strong>Total: </strong>${recap.total}</span><br/>`)
-    splitRecap.append(`<span><strong>Repair: </strong>${recap.repair}</span><br/>`)
-    splitRecap.append(`<span><strong>Total (net): </strong>${recap.totalNet}</span><br/>`)
-    splitRecap.append(`<span><strong>Splitter fee: </strong>${recap.splitterQuota} (${recap.splitterPercent * 100}%)</span><br/>`)
+    splitRecap.append(`<span><strong>Total: </strong>${numberWithCommas(~~recap.total)}</span><br/>`)
+    splitRecap.append(`<span><strong>Repair: </strong>${numberWithCommas(~~recap.repair)}</span><br/>`)
+    splitRecap.append(`<span><strong>Total (net): </strong>${numberWithCommas(~~recap.totalNet)}</span><br/>`)
+    splitRecap.append(`<span><strong>Splitter fee: </strong>${numberWithCommas(~~recap.splitterQuota)} (${recap.splitterPercent * 100}%)</span><br/>`)
     splitRecap.append('<hr>');
     recap.members.forEach(function (member) {
-        splitRecap.append(`<span><strong>${member.name}</strong> ${member.quota}${member.isSplitter ? ' <strong>(splitter)</strong>' : ''}</span><br/>`)
+        splitRecap.append(`<span><strong>${member.name}</strong> ${numberWithCommas(~~member.quota)}${member.isSplitter ? ' <strong>(splitter)</strong>' : ''}</span><br/>`)
     });
     // splitRecap.append('<pre>'+JSON.stringify(recap, null, 4)+'</pre>');
 }
