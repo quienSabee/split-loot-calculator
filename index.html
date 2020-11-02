@@ -25,7 +25,8 @@
                                 <thead>
                                     <th class="align-middle"><strong>Name</strong></th>
                                     <th class="align-middle"><strong>Contribution</strong></th>
-                                    <th class="align-middle"><button class="btn btn-primary" type="submit" onclick="addMember()">Add</button>
+                                    <th class="align-middle"><button class="btn btn-primary" type="submit"
+                                            onclick="addMember()">Add</button>
                                     </th>
                                 </thead>
                                 <tbody id="member-list">
@@ -61,23 +62,37 @@
                             </table>
                         </div>
                         <div class="row">
-                            <div class="input-group col-md-4 col-sm-12">
+                            <div class="input-group col-md-6 col-sm-12">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Total</span>
                                 </div>
-                                <input type="text" class="form-control" aria-label="Total" id="split-total" min="0" value="0" onblur="evaluateExpression(this)">
+                                <input type="text" class="form-control" aria-label="Total" id="split-total" min="0"
+                                    value="0" onblur="evaluateExpression(this)">
                             </div>
-                            <div class="input-group col-md-4 col-sm-12">
+                            <div class="input-group col-md-6 col-sm-12">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Repair</span>
                                 </div>
-                                <input type="text" class="form-control" aria-label="Repair" id="split-repair" min="0" value="0" onblur="evaluateExpression(this)">
+                                <input type="text" class="form-control" aria-label="Repair" id="split-repair" min="0"
+                                    value="0" onblur="evaluateExpression(this)">
                             </div>
-                            <div class="input-group col-md-4 col-sm-12">
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="input-group col-md-6 col-sm-12">
                                 <input type="number" class="percent form-control" id="split-percent" value="10" min="0"
                                     max="100">
                                 <div class="input-group-append"><span class="input-group-text">%</span>
                                 </div>
+                            </div>
+                            <div class="input-group col-md-6 col-sm-12">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Formula</span>
+                                </div>
+                                <select id="meantype" class="custom-select">
+                                    <option selected value="retributive">Retributive</option>
+                                    <option value="mean">Mean</option>
+                                </select>
                             </div>
                         </div>
                     </div>

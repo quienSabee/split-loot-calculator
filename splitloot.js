@@ -1,6 +1,7 @@
 var memberList = $('#member-list');
 var memberTemplate = memberList.children().first();
 
+var meanType = $('#meantype');
 var splitTotal = $('#split-total');
 var splitRepair = $('#split-repair');
 var splitPercent = $('#split-percent');
@@ -12,6 +13,7 @@ $(document).ready(function () {
     memberTemplate.hide();
 
     $('input').change(calculateSplit);
+    $('select').change(calculateSplit);
 
     var defaultMemberCount = 3;
     for (var i = 0; i < defaultMemberCount; ++i)
@@ -71,14 +73,26 @@ function calculateSplit() {
     var total = math.eval(splitTotal.val());
     var repair = math.eval(splitRepair.val());
     var percent = +splitPercent.val() / 100;
-    var totalContribution = members.reduce(function (totalContribution, member) { return totalContribution + member.contribution; }, 0);
-
     var totalNet = (total - repair) * (1 - percent);
     var splitterQuota = (total - repair) * percent;
+
+    var steps = members
+        .map(m => m.contribution)
+        .filter((contribution, index, contributions) => contributions.indexOf(contribution) === index)
+        .sort();
+    var stepCounts = steps
+        .map(c => members.filter(m => m.contribution >= c).length);
+    var stepQuotas = steps
+        .map((s,i,a) => ((s - (a[i-1]||0))/stepCounts[i]))
+        .map((sum => value => sum += value)(0));
+    var totalContribution = members.reduce(function (totalContribution, member) { return totalContribution + member.contribution; }, 0);
+
     var members = members.map(function (member) {
         return {
             name: member.name,
-            quota: totalNet * (member.contribution / totalContribution) + (member.isSplitter ? splitterQuota : 0),
+            quota: meanType.val() === "mean"
+                ? (totalNet * (member.contribution / totalContribution) + (member.isSplitter ? splitterQuota : 0))
+                : (totalNet * stepQuotas[steps.indexOf(member.contribution)] + (member.isSplitter ? splitterQuota : 0)),
             isSplitter: member.isSplitter,
         };
     });
